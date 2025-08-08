@@ -1,4 +1,4 @@
-import { Card, Flex } from "antd";
+import { Badge, Card, Flex } from "antd";
 import { Typography } from "antd";
 import dayjs from "dayjs";
 import { Source } from "../../types";
@@ -6,6 +6,7 @@ import { Source } from "../../types";
 export const SourcesListItem = (props: Source) => {
   const { name, description, launch_date, image_url } = props;
   const date = dayjs(launch_date).format("MMMM D, YYYY");
+  const isActive = props.status === "Active";
 
   const onClick = () => {
     window.open(image_url, "_blank");
@@ -21,9 +22,15 @@ export const SourcesListItem = (props: Source) => {
     >
       <Card.Meta
         title={
-          <Typography.Text strong className="source-title">
-            {name}
-          </Typography.Text>
+          <Flex align="center" gap={16} justify="space-between">
+            <Typography.Text strong className="source-title">
+              {name}
+            </Typography.Text>
+            <Badge
+              status={isActive ? "success" : "error"}
+              text={isActive ? "Active" : "Inactive"}
+            />
+          </Flex>
         }
         description={
           <Flex vertical gap={8}>
