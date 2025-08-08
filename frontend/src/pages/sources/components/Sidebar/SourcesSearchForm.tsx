@@ -30,6 +30,7 @@ export const SourcesSearchForm = () => {
         <Form.Item name="search" noStyle>
           <Input.Search
             placeholder="Search..."
+            variant="filled"
             allowClear
             enterButton={
               <Button
