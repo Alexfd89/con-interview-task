@@ -1,4 +1,4 @@
-import { Badge, Card, Flex } from "antd";
+import { Badge, Card, Flex, Image } from "antd";
 import { Typography } from "antd";
 import dayjs from "dayjs";
 import { Source } from "../../types";
@@ -8,17 +8,17 @@ export const SourcesListItem = (props: Source) => {
   const date = dayjs(launch_date).format("MMMM D, YYYY");
   const isActive = props.status === "Active";
 
-  const onClick = () => {
-    window.open(image_url, "_blank");
-  };
-
   return (
     <Card
       hoverable
       variant="borderless"
-      onClick={onClick}
       cover={
-        image_url && <img src={image_url} alt={name} className="source-image" />
+        <Image
+          className="source-image"
+          height={180}
+          width={"100%"}
+          src={image_url}
+        />
       }
     >
       <Card.Meta
@@ -38,9 +38,14 @@ export const SourcesListItem = (props: Source) => {
             <Typography.Text type="secondary" className="source-date">
               {date}
             </Typography.Text>
-            <Typography.Text className="source-description">
+            <Typography.Paragraph
+              ellipsis={{
+                rows: 3,
+                expandable: "collapsible",
+              }}
+            >
               {description}
-            </Typography.Text>
+            </Typography.Paragraph>
           </Flex>
         }
       />
