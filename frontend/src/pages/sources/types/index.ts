@@ -13,7 +13,7 @@ export type Source = {
   status: string;
 };
 
-export type SourceFilters = Pagination & {
+export type SourceFilters = Partial<Pagination> & {
   search?: string;
 };
 

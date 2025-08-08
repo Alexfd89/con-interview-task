@@ -10,10 +10,6 @@ export const themeConfig = {
     Layout: {
       siderBg: "#1f1f1f",
     },
-    Pagination: {
-      itemActiveBg: "white",
-      colorPrimary: "black",
-    },
   },
   algorithm: theme.darkAlgorithm,
 };

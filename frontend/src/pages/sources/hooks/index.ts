@@ -80,40 +80,24 @@ export const useSourceFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const filters: SourceFilters = useMemo(() => {
-    const filters: SourceFilters = {
-      limit: 8,
-      page: 1,
-    };
+    const filters: SourceFilters = {};
 
     const searchParams = new URLSearchParams(location.search);
     const search = searchParams.get("search")?.trim();
-    const limit = Number(searchParams.get("limit")) || filters.limit;
-    const page = Number(searchParams.get("page")) || filters.page;
 
     if (search) filters.search = search;
-    if (limit) filters.limit = limit;
-    if (page) filters.page = page;
 
     return filters;
   }, [location.search]);
 
   const updateFilters = useCallback(
     (newFilters: Partial<SourceFilters>) => {
-      const { page = 1 } = newFilters;
       const search = newFilters.search?.trim();
 
       if (search) {
         searchParams.set("search", search);
       } else {
         searchParams.delete("search");
-      }
-
-      if (newFilters.limit) {
-        searchParams.set("limit", String(newFilters.limit));
-      }
-
-      if (page !== undefined) {
-        searchParams.set("page", String(page));
       }
 
       setSearchParams(searchParams);

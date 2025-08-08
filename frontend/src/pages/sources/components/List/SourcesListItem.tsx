@@ -10,12 +10,11 @@ export const SourcesListItem = (props: Source) => {
 
   return (
     <Card
-      hoverable
       variant="borderless"
       cover={
         <Image
           className="source-image"
-          height={180}
+          height={200}
           width={"100%"}
           src={image_url}
         />

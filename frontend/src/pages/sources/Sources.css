@@ -1,5 +1,5 @@
 .sources-container {
-  padding: 24px;
+  padding: 24px 0;
   min-height: 100vh;
 }
 
@@ -35,7 +35,18 @@
   flex-direction: column;
 }
 
-.source-search-history-list {
-  overflow: auto;
+#source-search-history-list {
+  overflow-y: auto;
   height: calc(100vh - 202px);
+}
+
+#sources-list {
+  padding: 0 24px;
+  overflow-y: auto;
+  overflow-x: none;
+  height: calc(100vh - 48px);
+}
+
+.infinite-scroll-component {
+  overflow-x: hidden !important;
 }

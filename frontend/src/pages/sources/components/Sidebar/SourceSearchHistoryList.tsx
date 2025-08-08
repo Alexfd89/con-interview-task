@@ -21,7 +21,6 @@ export const SourceSearchHistoryList = () => {
     isFetching,
   } = useGetSourceSearchHistory({ page, limit: 20 });
 
-  // Update items when response changes
   useEffect(() => {
     if (response?.data) {
       setData((prevState) =>
@@ -64,13 +63,13 @@ export const SourceSearchHistoryList = () => {
       <Typography.Text className="p-16" strong>
         Search History
       </Typography.Text>
-      <div id="scrollableDiv" className="source-search-history-list">
+      <div id="source-search-history-list">
         <InfiniteScroll
           dataLength={data.length}
           next={onLoadMore}
           hasMore={hasMore}
           loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-          scrollableTarget="scrollableDiv"
+          scrollableTarget="source-search-history-list"
         >
           <List
             size="small"
@@ -82,7 +81,7 @@ export const SourceSearchHistoryList = () => {
                 <List.Item
                   key={item.id}
                   onClick={() => onClick(item.value)}
-                  style={{ cursor: "pointer" }}
+                  className="cursor-pointer"
                 >
                   <List.Item.Meta
                     description={
