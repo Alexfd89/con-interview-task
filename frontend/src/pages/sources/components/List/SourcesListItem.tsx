@@ -15,6 +15,7 @@ export const SourcesListItem = (props: Source) => {
   return (
     <Card
       hoverable
+      variant="borderless"
       onClick={onClick}
       cover={
         image_url && <img src={image_url} alt={name} className="source-image" />

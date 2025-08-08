@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button, Divider, Flex, List, Modal, Skeleton, Typography } from "antd";
+import { Button, Flex, List, Modal, Skeleton, Typography } from "antd";
 import {
   useDeleteSourceSearchHistory,
   useGetSourceSearchHistory,
@@ -70,7 +70,6 @@ export const SourceSearchHistoryList = () => {
           next={onLoadMore}
           hasMore={hasMore}
           loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-          endMessage={<Divider plain>It is all, nothing more</Divider>}
           scrollableTarget="scrollableDiv"
         >
           <List

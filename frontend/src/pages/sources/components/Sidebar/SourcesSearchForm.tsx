@@ -29,7 +29,7 @@ export const SourcesSearchForm = () => {
       <Flex vertical gap={12}>
         <Form.Item name="search" noStyle>
           <Input.Search
-            placeholder="Search..."
+            placeholder="Search sources..."
             variant="filled"
             allowClear
             enterButton={

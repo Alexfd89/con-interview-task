@@ -11,6 +11,8 @@ export const SourcesList = () => {
       limit: pageSize,
       page,
     });
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   if (isError) {
@@ -21,7 +23,7 @@ export const SourcesList = () => {
     <List
       loading={isPending}
       grid={{
-        gutter: 24,
+        gutter: 32,
         xs: 1,
         sm: 1,
         md: 2,
