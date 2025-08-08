@@ -9,20 +9,20 @@ export const SourcesList = () => {
   const { filters } = useSourceFilters();
   const [data, setData] = useState<Source[]>([]);
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState<string | undefined>();
   const {
     isPending,
     isFetching,
     data: response,
     isError,
     error,
-  } = useGetSources({ limit: 12, page, ...filters });
+  } = useGetSources({ limit: 12, page, search });
 
   useEffect(() => {
-    if (filters.search) {
-      setPage(1);
-      setData([]); // Clear data only when a new search is initiated
-    }
-  }, [filters.search]);
+    setPage(1);
+    setData([]);
+    setSearch(filters.search);
+  }, [filters.search, setData, setPage]);
 
   useEffect(() => {
     if (response?.data) {
