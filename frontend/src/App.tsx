@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, theme } from "antd";
 import { AppRouter } from "./router/AppRouter";
 
 const queryClient = new QueryClient({
@@ -14,7 +14,14 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ConfigProvider>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#0c3b93",
+          },
+          algorithm: theme.darkAlgorithm,
+        }}
+      >
         <AppRouter />
       </ConfigProvider>
     </QueryClientProvider>

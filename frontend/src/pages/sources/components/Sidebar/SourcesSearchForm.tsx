@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Button, Flex, Form, Input } from "antd";
 import { useCreateSourceSearchHistory, useSourceFilters } from "../../hooks";
+import { SearchOutlined } from "@ant-design/icons";
 
 type FormValues = {
   search?: string;
@@ -31,9 +32,11 @@ export const SourcesSearchForm = () => {
             placeholder="Search..."
             allowClear
             enterButton={
-              <Button type="primary" htmlType="submit">
-                Search
-              </Button>
+              <Button
+                type="primary"
+                htmlType="submit"
+                icon={<SearchOutlined />}
+              />
             }
           />
         </Form.Item>
