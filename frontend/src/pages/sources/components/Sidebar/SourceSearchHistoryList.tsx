@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button, Divider, List, Modal, Skeleton, Typography } from "antd";
+import { Button, Divider, Flex, List, Modal, Skeleton, Typography } from "antd";
 import {
   useDeleteSourceSearchHistory,
   useGetSourceSearchHistory,
@@ -60,45 +60,49 @@ export const SourceSearchHistoryList = () => {
   const hasMore = data.length < (response?.total || 0);
 
   return (
-    <div id="scrollableDiv" className="source-search-history-list">
-      <InfiniteScroll
-        dataLength={data.length}
-        next={onLoadMore}
-        hasMore={hasMore}
-        loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-        endMessage={<Divider plain>It is all, nothing more</Divider>}
-        scrollableTarget="scrollableDiv"
-      >
-        <List
-          size="small"
-          rowKey="id"
-          header={
-            <Typography.Text className="p-16" strong>
-              Search History
-            </Typography.Text>
-          }
-          loading={isPending}
-          dataSource={data}
-          renderItem={(item) => (
-            <List.Item
-              key={item.id}
-              onClick={() => onClick(item.value)}
-              style={{ cursor: "pointer" }}
-            >
-              <List.Item.Meta
-                description={<Typography.Text>{item.value}</Typography.Text>}
-              />
-              <Button
-                size="small"
-                shape="circle"
-                onClick={(e) => onDelete(e, item)}
-                type="text"
-                icon={<DeleteOutlined />}
-              />
-            </List.Item>
-          )}
-        />
-      </InfiniteScroll>
-    </div>
+    <Flex vertical>
+      <Typography.Text className="p-16" strong>
+        Search History
+      </Typography.Text>
+      <div id="scrollableDiv" className="source-search-history-list">
+        <InfiniteScroll
+          dataLength={data.length}
+          next={onLoadMore}
+          hasMore={hasMore}
+          loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+          endMessage={<Divider plain>It is all, nothing more</Divider>}
+          scrollableTarget="scrollableDiv"
+        >
+          <List
+            size="small"
+            rowKey="id"
+            loading={isPending}
+            dataSource={data}
+            renderItem={(item) =>
+              item && (
+                <List.Item
+                  key={item.id}
+                  onClick={() => onClick(item.value)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <List.Item.Meta
+                    description={
+                      <Typography.Text>{item.value}</Typography.Text>
+                    }
+                  />
+                  <Button
+                    size="small"
+                    shape="circle"
+                    onClick={(e) => onDelete(e, item)}
+                    type="text"
+                    icon={<DeleteOutlined />}
+                  />
+                </List.Item>
+              )
+            }
+          />
+        </InfiniteScroll>
+      </div>
+    </Flex>
   );
 };
