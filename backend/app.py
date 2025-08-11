@@ -18,19 +18,20 @@ db = SpaceDB()
 @app.get("/api/sources", response_model=SourceListResponse)
 def get_sources(query: SourceQueryParams = Depends()):
      sources = db.get_all_sources()
-     total = len(sources)
      offset = (query.page - 1) * query.limit
-     data = sources[offset:offset + query.limit]
+     data = sources
      
      if query.search:
          search_text = query.search.lower()
          data = [
-             s for s in data
+             s for s in sources
              if search_text in s["name"].lower() or search_text in s["description"].lower()
          ]
+         
+     total = len(data)
      
      return SourceListResponse(
-         data=data,
+         data=data[offset:offset + query.limit],
          total=total,
          filters=query
      )
